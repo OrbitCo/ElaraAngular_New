@@ -56,14 +56,13 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
                 localStorage.setItem('member', JSON.stringify(MemberValue));
                 this.submitted = false;
                 this.memberLogin.reset();
-                this.authservice.memberSignIn(MemberValue).subscribe((data: any) => {
-                    if (data) {
-                        console.log('member', data);
-                        // localStorage.setItem('data', data);
+                this.authservice.memberSignIn(MemberValue).subscribe((response: any) => {
+                    if(response.error) {
+                        alert(response.error);
+                    } else {
                         this.router.navigate(['/pages/dashboard']);
                     }
                 });
-                this.router.navigate(['/pages/dashboard']);
             }
         }
         if (this.userType === 'partner') {
@@ -79,14 +78,13 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
                 localStorage.setItem('partner', JSON.stringify(partnerValue));
                 this.submitted = false;
                 this.partnerLogin.reset();
-                this.authservice.partnerSignIn(partnerValue).subscribe((data: any) => {
-                    if (data) {
-                        console.log('partner', data);
-                        // localStorage.setItem('data', JSON.stringify(data));
+                this.authservice.partnerSignIn(partnerValue).subscribe((response: any) => {
+                    if(response.error) {
+                        alert(response.error);
+                    } else {
                         this.router.navigate(['/pages/dashboard']);
                     }
                 });
-                this.router.navigate(['/pages/dashboard']);
             }
         }
     }

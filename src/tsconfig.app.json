@@ -12,6 +12,18 @@
       ],
       "@pages/*": [
         "./app/pages/*"
+      ],
+      "@member/*": [
+        "./app/pages/member/*"
+      ],
+      "@partner/*": [
+        "./app/pages/partner/*"
+      ],
+      "@core/*": [
+        "./app/@core/*"
+      ],
+      "@theme/*": [
+        "./app/@theme/*"
       ]
     }
   },

@@ -64,6 +64,7 @@ export class ButtonsComponent {
 
     this.memberTransaction = JSON.parse(localStorage.getItem('member'));
     this.crudService.memberData(this.memberTransaction).subscribe((result: any) => {
+      console.log(result)
       if (result) {
        this.memberData = result;
       }

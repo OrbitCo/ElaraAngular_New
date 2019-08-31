@@ -1,46 +1,61 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class authService {
 
-  apiUrl= 'http://3.16.137.69:8000/api/';
+    apiUrl = 'http://3.16.137.69:8000/api/';
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+    }
 
-  memberSignIn(memberValue) {
-    return this.http.post( this.apiUrl + 'memberData/', memberValue);
-  }
+    getRequest(url) {
+        return this.http.get(this.apiUrl + url);
+    }
 
-  memberRegistration(memberValue) {
-    return this.http.post(this.apiUrl + 'registerMember/', memberValue);
-  }
-  memberData(memberValue) {
-    return this.http.post(this.apiUrl + 'memberData/', memberValue);
-  }
-  memberAddOfferTransaction(inputData) {
-    return this.http.post(this.apiUrl + 'addOfferTransactions/', inputData);
-  }
-  memberEarnPoints(inputData) {
-    return this.http.post(this.apiUrl + 'earnPoints/', inputData);
-  }
-  memberRewardsPonts(inputData) {
-    return this.http.post(this.apiUrl + 'addRewardTransactions/', inputData);
-  }
-  memberUseRewardPoints(inputData) {
-    return this.http.post(this.apiUrl + 'usePoints/', inputData);
-  }
+    postRequest(url, data) {
+        return this.http.post(this.apiUrl + url, data);
+    }
 
-  partnerSignIn(partnerValue) {
-    return this.http.post(this.apiUrl + 'partnerData/', partnerValue);
-  }
+    memberSignIn(memberValue) {
+        return this.http.post(this.apiUrl + 'memberData/', memberValue);
+    }
 
-  partnerRegistration(partnerValue) {
-    return this.http.post(this.apiUrl + 'registerPartner/', partnerValue);
-  }
-  partnerData(partnerValue) {
-    return this.http.post(this.apiUrl + 'partnerData/', partnerValue);
-  }
+    memberRegistration(memberValue) {
+        return this.http.post(this.apiUrl + 'registerMember/', memberValue);
+    }
+
+    memberData(memberValue) {
+        return this.http.post(this.apiUrl + 'memberData/', memberValue);
+    }
+
+    memberAddOfferTransaction(inputData) {
+        return this.http.post(this.apiUrl + 'addOfferTransactions/', inputData);
+    }
+
+    memberEarnPoints(inputData) {
+        return this.http.post(this.apiUrl + 'earnPoints/', inputData);
+    }
+
+    memberRewardsPonts(inputData) {
+        return this.http.post(this.apiUrl + 'addRewardTransactions/', inputData);
+    }
+
+    memberUseRewardPoints(inputData) {
+        return this.http.post(this.apiUrl + 'usePoints/', inputData);
+    }
+
+    partnerSignIn(partnerValue) {
+        return this.http.post(this.apiUrl + 'partnerData/', partnerValue);
+    }
+
+    partnerRegistration(partnerValue) {
+        return this.http.post(this.apiUrl + 'registerPartner/', partnerValue);
+    }
+
+    partnerData(partnerValue) {
+        return this.http.post(this.apiUrl + 'partnerData/', partnerValue);
+    }
 }
