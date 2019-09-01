@@ -20,7 +20,7 @@ import {PartnerOffersModule} from "@partner/partner-offers/partner-offers.module
         PartnerOffersModule
     ],
     declarations: [
-        PagesComponent,
+        PagesComponent
         // HomeComponent,
     ],
 })

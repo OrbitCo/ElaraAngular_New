@@ -86,3 +86,7 @@ $nb-themes: nb-register-theme((
   slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
   slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
 ), dark, dark);
+
+.nb-theme-dark ng2-smart-table thead tr.ng2-smart-filters th .ng2-smart-filter input {
+    color: #000;
+}

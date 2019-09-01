@@ -13,37 +13,18 @@ export const MENU_ITEMS1: NbMenuItem[] = [{
     {
         title: 'Earn Points',
         icon: 'layout-outline',
-        children: [
-            {
-                title: 'Earn Points',
-                icon: 'layout-outline',
-                link: '/pages/forms/buttons',
-            },
-        ],
+        link: '/pages/member-earn-points',
     },
     {
         title: 'Redeem Points',
         icon: 'edit-2-outline',
-        children: [
-            {
-                title: 'Redeem Points',
-                icon: 'edit-2-outline',
-                link: '/pages/forms/datepicker',
-            },
-        ],
+        link: '/pages/forms/datepicker',
     },
     {
         title: 'Transactions',
         icon: 'keypad-outline',
-        children: [
-            {
-                title: 'Transactions',
-                icon: 'keypad-outline',
-                link: '/pages/member-transactions',
-            },
-        ],
+        link: '/pages/member-transactions',
     },
-
     {
         title: 'Exchange Tokens',
         icon: 'browser-outline',

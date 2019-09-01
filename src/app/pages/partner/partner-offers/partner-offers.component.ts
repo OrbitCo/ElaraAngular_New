@@ -63,7 +63,6 @@ export class PartnerOffersComponent implements OnInit {
 
     onEditConfirm(event) {
         if (window.confirm('Are you sure you want to save?')) {
-            //call to remote api, remember that you have to await this
             event.confirm.resolve(event.newData);
         } else {
             event.confirm.reject();
@@ -84,10 +83,10 @@ export class PartnerOffersComponent implements OnInit {
                 this.crudService.postRequest("partnerData", this.partnerOffer).subscribe((result: any) => {
                     if (result.addOfferResults) {
                         this.source.load(result.addOfferResults);
+                        event.confirm.resolve(event.newData);
                     }
                 });
             }
         });
     }
-
 }

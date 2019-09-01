@@ -53,11 +53,10 @@ export class MemberTransactionsComponent implements OnInit {
 
     ngOnInit(): void {
         this.memberTransaction = JSON.parse(localStorage.getItem('member'));
-        this.crudService.postRequest("memberData", this.memberTransaction).subscribe((result: any) => {
-            if (result.earnPointsResult) {
-                this.source.load(result.earnPointsResult);
+        this.crudService.postRequest("memberData", this.memberTransaction).subscribe((response: any) => {
+            if (response.earnPointsResult) {
+                this.source.load(response.earnPointsResult);
             }
         });
     }
-
 }
