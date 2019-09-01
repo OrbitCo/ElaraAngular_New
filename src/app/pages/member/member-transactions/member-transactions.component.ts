@@ -46,16 +46,20 @@ export class MemberTransactionsComponent implements OnInit {
                 },
             }
         },
+        noDataMessage: "No data found"
     };
 
     constructor(private crudService: authService) {
     }
 
     ngOnInit(): void {
+        this.settings.noDataMessage = "Loading data, please wait...";
         this.memberTransaction = JSON.parse(localStorage.getItem('member'));
         this.crudService.postRequest("memberData", this.memberTransaction).subscribe((response: any) => {
             if (response.earnPointsResult) {
                 this.source.load(response.earnPointsResult);
+            } else {
+                this.settings.noDataMessage = "No data found";
             }
         });
     }

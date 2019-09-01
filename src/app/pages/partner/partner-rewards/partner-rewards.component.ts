@@ -1,16 +1,19 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {LocalDataSource} from "ng2-smart-table";
+import {Component, OnInit} from '@angular/core';
 import {authService} from "@pages/service/authService";
+import {LocalDataSource} from "ng2-smart-table";
 
 @Component({
-    selector: 'ngx-partner-offers',
-    templateUrl: './partner-offers.component.html',
-    styleUrls: ['./partner-offers.component.scss']
+    selector: 'ngx-partner-rewards',
+    templateUrl: './partner-rewards.component.html',
+    styleUrls: ['./partner-rewards.component.scss']
 })
-export class PartnerOffersComponent implements OnInit {
+export class PartnerRewardsComponent implements OnInit {
 
-    partnerOffer;
+    partnerRewards;
+    source: LocalDataSource = new LocalDataSource();
+
     settings = {
+        actions: {add: true, edit: true, delete: true},
         add: {
             addButtonContent: '<i class="nb-plus"></i>',
             createButtonContent: '<i class="nb-checkmark"></i>',
@@ -31,34 +34,33 @@ export class PartnerOffersComponent implements OnInit {
             partner: {
                 title: 'Partner',
                 type: 'string',
+                width: '33.3%'
             },
-            price: {
-                title: 'Price',
+            item: {
+                title: 'Item',
                 type: 'string',
-            },
-            product: {
-                title: 'Product',
-                type: 'string',
+                width: '33.3%'
             },
             points: {
                 title: 'Points',
-                type: 'string',
+                type: 'number',
+                width: '33.3%'
             }
         },
         noDataMessage: "No data found"
     };
-
-    source: LocalDataSource = new LocalDataSource();
 
     constructor(private crudService: authService) {
     }
 
     ngOnInit() {
         this.settings.noDataMessage = "Loading data, please wait...";
-        this.partnerOffer = JSON.parse(localStorage.getItem('partner'));
-        this.crudService.postRequest("partnerData", this.partnerOffer).subscribe((result: any) => {
-            if (result.addOfferResults) {
-                this.source.load(result.addOfferResults);
+        this.partnerRewards = JSON.parse(localStorage.getItem('partner'));
+        this.crudService.postRequest("partnerData", this.partnerRewards).subscribe((response: any) => {
+            if(response.addRewardResults) {
+                this.source.load(response.addRewardResults);
+            } else {
+                this.settings.noDataMessage = "No data found";
             }
         });
     }
@@ -76,16 +78,14 @@ export class PartnerOffersComponent implements OnInit {
         const data = {
             cardId: inputs.partner,
             partnerId: inputs.partner,
-            points: inputs.points,
-            price: inputs.price,
-            productName: inputs.product,
+            itemName: inputs.item,
+            points: inputs.points
         };
-        this.crudService.postRequest("addOffer", data).subscribe((result: any) => {
+        this.crudService.postRequest("addReward", data).subscribe((result: any) => {
             if (result.success) {
                 event.confirm.resolve(event.newData);
-            }else {
-                this.settings.noDataMessage = "No data found";
             }
         });
     }
+
 }

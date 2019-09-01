@@ -35,15 +35,19 @@ export class MemberEarnpointsComponent implements OnInit {
                 width: '25%'
             }
         },
+        noDataMessage: "No data found"
     };
 
     constructor(private crudService: authService) {
     }
 
     ngOnInit(): void {
+        this.settings.noDataMessage = "Loading data, please wait...";
         this.crudService.postRequest("allOffersInfo", {cardId: "admin"}).subscribe((response: any) => {
             if(response.success) {
                 this.source.load(response.success);
+            } else {
+                this.settings.noDataMessage = "No data found";
             }
         });
     }

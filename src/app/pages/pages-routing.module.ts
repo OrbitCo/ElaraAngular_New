@@ -21,6 +21,16 @@ const routes: Routes = [{
             component: PartnerOffersComponent,
         },
         {
+            path: 'partner-rewards',
+            loadChildren: () => import('@partner/partner-rewards/partner-rewards.module')
+                .then(m => m.PartnerRewardsModule),
+        },
+        {
+            path: 'partner-points-allocated',
+            loadChildren: () => import('@partner/partner-points-allocated/partner-points-allocated.module')
+                .then(m => m.PartnerPointsAllocatedModule),
+        },
+        {
             path: 'member-earn-points',
             loadChildren: () => import('@member/member-earnpoints/member-earnpoints.module')
                 .then(m => m.MemberEarnpointsModule),

@@ -18,7 +18,7 @@ export const MENU_ITEMS: NbMenuItem[] = [{
     {
         title: 'Rewards',
         icon: 'edit-2-outline',
-        link: '/pages/ui-features/icons'
+        link: '/pages/partner-rewards'
     },
     {
         title: 'Transactions',
@@ -27,7 +27,7 @@ export const MENU_ITEMS: NbMenuItem[] = [{
             {
                 title: 'Points Allocated',
                 icon: 'keypad-outline',
-                link: '/pages/modal-overlays/tooltip',
+                link: '/pages/partner-points-allocated',
             },
             {
                 title: 'Points Redeemed',
