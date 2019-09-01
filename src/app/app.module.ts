@@ -20,6 +20,7 @@ import {
     NbSidebarModule,
     NbToastrModule,
     NbWindowModule,
+    NbAlertModule
 } from '@nebular/theme';
 import {LoginComponent} from './pages/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -27,8 +28,10 @@ import {RegistrationComponent} from './pages/registration/registration.component
 import {HomeComponent} from './pages/home/home.component';
 import {Ng2SmartTableModule} from "ng2-smart-table";
 
-import {MemberLoginComponent} from "@pages/member-login/member-login.component";
-import {PartnerLoginComponent} from "@pages/partner-login/partner-login.component";
+import {MemberLoginComponent} from "@member/member-login/member-login.component";
+import {PartnerLoginComponent} from "@partner/partner-login/partner-login.component";
+import {MemberRegistrationComponent} from "@member/member-registration/member-registration.component";
+import {PartnerRegistrationComponent} from "@partner/partner-registration/partner-registration.component";
 
 @NgModule({
     declarations: [
@@ -37,7 +40,9 @@ import {PartnerLoginComponent} from "@pages/partner-login/partner-login.componen
         RegistrationComponent,
         HomeComponent,
         MemberLoginComponent,
-        PartnerLoginComponent
+        PartnerLoginComponent,
+        MemberRegistrationComponent,
+        PartnerRegistrationComponent
     ],
     imports: [
         BrowserModule,
@@ -47,6 +52,7 @@ import {PartnerLoginComponent} from "@pages/partner-login/partner-login.componen
         FormsModule,
         NbLayoutModule,
         ReactiveFormsModule,
+        Ng2SmartTableModule,
         ThemeModule.forRoot(),
 
         NbSidebarModule.forRoot(),
@@ -60,7 +66,7 @@ import {PartnerLoginComponent} from "@pages/partner-login/partner-login.componen
         }),
         CoreModule.forRoot(),
         NbCardModule,
-        Ng2SmartTableModule
+        NbAlertModule
     ],
     bootstrap: [AppComponent],
 })

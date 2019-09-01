@@ -7,10 +7,7 @@ import {Ng2SmartTableModule} from "ng2-smart-table";
 
 const routes: Routes = [{
     path: '',
-    component: MemberTransactionsComponent,
-    children: [
-
-    ],
+    component: MemberTransactionsComponent
 }];
 
 @NgModule({

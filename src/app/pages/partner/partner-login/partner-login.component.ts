@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {NbToastrService} from "@nebular/theme";
 import {NbLoginComponent} from '@nebular/auth';
-import {authService} from "@pages/service/authService";
+import {authService} from "../../service/authService";
 
 @Component({
     selector: 'ngx-partner-login',
@@ -15,6 +16,7 @@ export class PartnerLoginComponent extends NbLoginComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
                 public router: Router,
+                public toastrService: NbToastrService,
                 public authservice: authService) {
         super(null, null, null, router);
     }
@@ -41,7 +43,7 @@ export class PartnerLoginComponent extends NbLoginComponent implements OnInit {
             this.partnerLogin.reset();
             this.authservice.partnerSignIn(partnerValue).subscribe((response: any) => {
                 if(response.error) {
-                    alert(response.error);
+                    this.toastrService.show(response.error,'Login failed',{status: "danger", duration: 5000});
                 } else {
                     this.router.navigate(['/pages/dashboard']);
                 }

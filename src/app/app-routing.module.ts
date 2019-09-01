@@ -11,8 +11,11 @@ import {
 import {LoginComponent} from './pages/login/login.component';
 import {RegistrationComponent} from './pages/registration/registration.component';
 import {HomeComponent} from './pages/home/home.component';
-import {MemberLoginComponent} from "@pages/member-login/member-login.component";
-import {PartnerLoginComponent} from "@pages/partner-login/partner-login.component";
+
+import {MemberLoginComponent} from "@member/member-login/member-login.component";
+import {PartnerLoginComponent} from "@partner/partner-login/partner-login.component";
+import {MemberRegistrationComponent} from "@member/member-registration/member-registration.component";
+import {PartnerRegistrationComponent} from "@partner/partner-registration/partner-registration.component";
 
 const routes: Routes = [
     {
@@ -43,6 +46,14 @@ const routes: Routes = [
             {
                 path: 'partner-login',
                 component: PartnerLoginComponent,
+            },
+            {
+                path: 'member-registration',
+                component: MemberRegistrationComponent,
+            },
+            {
+                path: 'partner-registration',
+                component: PartnerRegistrationComponent,
             },
             {
                 path: 'register',
