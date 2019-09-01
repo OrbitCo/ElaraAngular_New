@@ -2,9 +2,11 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 
 import {PagesComponent} from './pages.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {ECommerceComponent} from './e-commerce/e-commerce.component';
-import {NotFoundComponent} from './miscellaneous/not-found/not-found.component';
+
+import {DashboardComponent} from '@pages/dashboard/dashboard.component';
+import {ECommerceComponent} from '@pages/e-commerce/e-commerce.component';
+import {NotFoundComponent} from '@pages/miscellaneous/not-found/not-found.component';
+import {PartnerOffersComponent} from "@partner/partner-offers/partner-offers.component";
 
 const routes: Routes = [{
     path: '',
@@ -15,8 +17,8 @@ const routes: Routes = [{
             component: ECommerceComponent,
         },
         {
-            path: 'iot-dashboard',
-            component: DashboardComponent,
+            path: 'partner-offers',
+            component: PartnerOffersComponent,
         },
         {
             path: 'member-transactions',

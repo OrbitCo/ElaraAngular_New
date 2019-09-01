@@ -39,7 +39,7 @@ export const MENU_ITEMS: NbMenuItem[] = [ {
       {
         title: 'Offers',
         icon: 'layout-outline',
-        link: '/pages/iot-dashboard',
+        link: '/pages/partner-offers',
       },
       /*{
         title: 'Rewards',

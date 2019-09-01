@@ -15,23 +15,32 @@ export class MemberTransactionsComponent implements OnInit {
     source: LocalDataSource = new LocalDataSource();
 
     settings = {
-        actions: { add: false, edit: false, delete: false, },
+        actions: {add: false, edit: false, delete: false,},
         columns: {
             member: {
                 title: 'Member',
                 type: 'string',
+                width: '20%'
             },
             partner: {
                 title: 'Partner',
                 type: 'string',
+                width: '20%'
             },
             points: {
                 title: 'Points',
-                type: 'string',
+                type: 'number',
+                width: '20%'
+            },
+            transactionId: {
+                title: 'Transaction ID',
+                type: 'number',
+                width: '20%'
             },
             timestamp: {
                 title: 'Date',
                 type: 'date',
+                width: '20%',
                 valuePrepareFunction: (date) => {
                     return date ? this.datePipeEn.transform(date, 'dd-MM-yyyy hh:mm') : null;
                 },
@@ -40,15 +49,15 @@ export class MemberTransactionsComponent implements OnInit {
     };
 
     constructor(private crudService: authService) {
+    }
+
+    ngOnInit(): void {
         this.memberTransaction = JSON.parse(localStorage.getItem('member'));
         this.crudService.postRequest("memberData", this.memberTransaction).subscribe((result: any) => {
             if (result.earnPointsResult) {
                 this.source.load(result.earnPointsResult);
             }
         });
-    }
-
-    ngOnInit() {
     }
 
 }
