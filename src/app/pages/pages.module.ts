@@ -19,7 +19,7 @@ import {PartnerRewardsModule} from "@partner/partner-rewards/partner-rewards.mod
         ECommerceModule,
         MiscellaneousModule,
         PartnerOffersModule,
-        PartnerRewardsModule
+        PartnerRewardsModule,
     ],
     declarations: [
         PagesComponent

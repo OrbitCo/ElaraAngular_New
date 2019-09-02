@@ -1,9 +1,9 @@
 import {NbMenuItem} from "@nebular/theme";
 
 export const MENU_ITEMS1: NbMenuItem[] = [{
-    title: 'Dashboard',
+    title: 'My Wallet',
     icon: 'home',
-    link: '/pages/dashboard',
+    link: '/pages/member-dashboard',
     home: true,
 },
     {
@@ -18,7 +18,7 @@ export const MENU_ITEMS1: NbMenuItem[] = [{
     {
         title: 'Redeem Points',
         icon: 'edit-2-outline',
-        link: '/pages/forms/datepicker',
+        link: '/pages/member-redeem-points',
     },
     {
         title: 'Transactions',

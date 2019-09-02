@@ -15,7 +15,7 @@ export class MemberTransactionsComponent implements OnInit {
     source: LocalDataSource = new LocalDataSource();
 
     settings = {
-        actions: {add: false, edit: false, delete: false,},
+        actions: {add: false, edit: false, delete: false},
         columns: {
             member: {
                 title: 'Member',

@@ -4,11 +4,11 @@ import {LocalDataSource} from "ng2-smart-table";
 import {DatePipe} from "@angular/common";
 
 @Component({
-    selector: 'ngx-partner-points-allocated',
-    templateUrl: './partner-points-allocated.component.html',
-    styleUrls: ['./partner-points-allocated.component.scss']
+    selector: 'ngx-partner-points-redeemed',
+    templateUrl: './partner-points-redeemed.component.html',
+    styleUrls: ['./partner-points-redeemed.component.scss']
 })
-export class PartnerPointsAllocatedComponent implements OnInit {
+export class PartnerPointsRedeemedComponent implements OnInit {
 
     partnerAllocated;
     datePipeEn: DatePipe = new DatePipe('en-US');

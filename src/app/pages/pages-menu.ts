@@ -32,7 +32,7 @@ export const MENU_ITEMS: NbMenuItem[] = [{
             {
                 title: 'Points Redeemed',
                 icon: 'keypad-outline',
-                link: '/pages/extra-components/calendar',
+                link: '/pages/partner-points-redeemed',
             },
         ],
     },

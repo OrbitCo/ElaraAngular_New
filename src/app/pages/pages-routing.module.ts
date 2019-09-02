@@ -31,9 +31,24 @@ const routes: Routes = [{
                 .then(m => m.PartnerPointsAllocatedModule),
         },
         {
+            path: 'partner-points-redeemed',
+            loadChildren: () => import('@partner/partner-points-redeemed/partner-points-redeemed.module')
+                .then(m => m.PartnerPointsRedeemedModule),
+        },
+        {
+            path: 'member-dashboard',
+            loadChildren: () => import('@member/member-dashboard/member-dashboard.module')
+                .then(m => m.MemberDashboardModule),
+        },
+        {
             path: 'member-earn-points',
             loadChildren: () => import('@member/member-earnpoints/member-earnpoints.module')
                 .then(m => m.MemberEarnpointsModule),
+        },
+        {
+            path: 'member-redeem-points',
+            loadChildren: () => import('@member/member-redeempoints/member-redeempoints.module')
+                .then(m => m.MemberRedeempointsModule),
         },
         {
             path: 'member-transactions',
