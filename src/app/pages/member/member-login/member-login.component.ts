@@ -33,6 +33,7 @@ export class MemberLoginComponent extends NbLoginComponent implements OnInit {
         if (this.memberLogin.invalid) {
             return;
         } else {
+            localStorage.removeItem('partner');
             localStorage.setItem('userType', 'member');
             const MemberValue = {
                 'accountnumber': this.memberLogin.value.accountNumber,

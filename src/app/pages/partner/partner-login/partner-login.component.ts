@@ -33,6 +33,7 @@ export class PartnerLoginComponent extends NbLoginComponent implements OnInit {
         if (this.partnerLogin.invalid) {
             return this.partnerLogin.invalid;
         } else {
+            localStorage.removeItem('member');
             localStorage.setItem('userType', 'partner');
             const partnerValue = {
                 'partnerid': this.partnerLogin.value.accountPartnerId,
