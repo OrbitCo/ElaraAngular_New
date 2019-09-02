@@ -36,6 +36,11 @@ const routes: Routes = [{
                 .then(m => m.PartnerPointsRedeemedModule),
         },
         {
+            path: 'partner-network',
+            loadChildren: () => import('@partner/partner-network/partner-network.module')
+                .then(m => m.PartnerNetworkModule),
+        },
+        {
             path: 'member-dashboard',
             loadChildren: () => import('@member/member-dashboard/member-dashboard.module')
                 .then(m => m.MemberDashboardModule),
