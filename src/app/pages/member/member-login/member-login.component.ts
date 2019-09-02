@@ -45,7 +45,7 @@ export class MemberLoginComponent extends NbLoginComponent implements OnInit {
                 if(response.error) {
                     this.toastrService.show(response.error,'Login failed',{status: "danger", duration: 5000});
                 } else {
-                    this.router.navigate(['/pages/dashboard']);
+                    this.router.navigate(['/pages/member-dashboard']);
                 }
             });
         }
