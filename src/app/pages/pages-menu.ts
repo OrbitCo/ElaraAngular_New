@@ -50,13 +50,7 @@ export const MENU_ITEMS: NbMenuItem[] = [{
     {
         title: 'Members',
         icon: 'map-outline',
-        children: [
-            {
-                title: 'Members',
-                icon: 'map-outline',
-                link: '/pages/layout/accordion',
-            },
-        ],
+        link: '/pages/partner-members'
     },
     {
         title: 'Settings',

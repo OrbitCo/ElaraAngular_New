@@ -8,6 +8,7 @@ import {ECommerceComponent} from '@pages/e-commerce/e-commerce.component';
 import {NotFoundComponent} from '@pages/miscellaneous/not-found/not-found.component';
 import {PartnerOffersComponent} from "@partner/partner-offers/partner-offers.component";
 import {PartnerExchangeTokensModule} from "@partner/partner-exchange-tokens/partner-exchange-tokens.module";
+import {PartnerMembersModule} from "@partner/partner-members/partner-members.module";
 
 const routes: Routes = [{
     path: '',
@@ -45,6 +46,11 @@ const routes: Routes = [{
             path: 'partner-exchange-tokens',
             loadChildren: () => import('@partner/partner-exchange-tokens/partner-exchange-tokens.module')
                 .then(m => m.PartnerExchangeTokensModule),
+        },
+        {
+            path: 'partner-members',
+            loadChildren: () => import('@partner/partner-members/partner-members.module')
+                .then(m => m.PartnerMembersModule),
         },
         {
             path: 'member-dashboard',
