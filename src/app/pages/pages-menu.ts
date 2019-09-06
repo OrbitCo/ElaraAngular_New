@@ -39,7 +39,7 @@ export const MENU_ITEMS: NbMenuItem[] = [{
     {
         title: 'Exchange Tokens',
         icon: 'browser-outline',
-        link: '/pages/layout/infinite-list'
+        link: '/pages/partner-exchange-tokens'
     },
 
     {

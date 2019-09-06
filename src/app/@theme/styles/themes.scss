@@ -95,12 +95,11 @@ $nb-themes: nb-register-theme((
     font-size: 1rem;
     
     /deep/ {
-        button,
-        input,
-        optgroup,
-        select,
-        textarea {
-            color: #000 !important;
+        ng2-smart-table {
+            input,
+            textarea {
+                color: #000 !important;
+            }
         }
     }
 }
