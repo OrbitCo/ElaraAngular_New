@@ -48,7 +48,7 @@ export class OneColumnLayoutComponent implements OnInit{
                     this.imageName = "delta-logo.png";
                     break;
                 default:
-                    this.imageName = "elara-logo.jpg";
+                    this.imageName = "elara-logo-2.jpg";
             }
         }
     }
