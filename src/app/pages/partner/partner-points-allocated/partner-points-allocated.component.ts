@@ -11,6 +11,7 @@ import {DatePipe} from "@angular/common";
 export class PartnerPointsAllocatedComponent implements OnInit {
 
     partnerAllocated;
+    tableStatus = false;
     datePipeEn: DatePipe = new DatePipe('en-US');
     source: LocalDataSource = new LocalDataSource();
 
@@ -46,21 +47,21 @@ export class PartnerPointsAllocatedComponent implements OnInit {
                 width: '20%'
             }
         },
-        noDataMessage: "No data found"
+        noDataMessage: "Loading data, please wait..."
     };
 
     constructor(private crudService: authService) {
     }
 
     ngOnInit() {
-        this.settings.noDataMessage = "Loading data, please wait...";
         this.partnerAllocated = JSON.parse(localStorage.getItem('partner'));
         this.crudService.postRequest("partnerData", this.partnerAllocated).subscribe((response: any) => {
-            if(response.earnPointsResults) {
+            if(Array.isArray(response.earnPointsResults) && response.earnPointsResults.length > 0) {
                 this.source.load(response.earnPointsResults);
             } else {
                 this.settings.noDataMessage = "No data found";
             }
+            this.tableStatus = true;
         });
     }
 

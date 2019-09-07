@@ -2,7 +2,11 @@
     <nb-card-header>Points Allocated Transactions</nb-card-header>
 
     <nb-card-body>
-        <ng2-smart-table [settings]="settings"
+        <ng2-smart-table *ngIf="!tableStatus"
+                         [settings]="settings">
+        </ng2-smart-table>
+        <ng2-smart-table *ngIf="tableStatus"
+                         [settings]="settings"
                          [source]="source"
                          (createConfirm)="onCreateConfirm($event)"
                          (editConfirm)="onEditConfirm($event)"

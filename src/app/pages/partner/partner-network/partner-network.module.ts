@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {PartnerNetworkComponent} from './partner-network.component';
+import {NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule} from '@nebular/theme';
+import {PartnerNetworkComponent, FsIconComponent} from './partner-network.component';
 import {RouterModule, Routes} from "@angular/router";
 
 const routes: Routes = [{
@@ -9,10 +10,14 @@ const routes: Routes = [{
 }];
 
 @NgModule({
-    declarations: [PartnerNetworkComponent],
+    declarations: [PartnerNetworkComponent, FsIconComponent],
     imports: [
         CommonModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        NbCardModule,
+        NbTreeGridModule,
+        NbIconModule,
+        NbInputModule
     ],
     exports: [RouterModule]
 })

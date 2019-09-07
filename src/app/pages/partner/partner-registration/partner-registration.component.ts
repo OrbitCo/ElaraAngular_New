@@ -37,7 +37,6 @@ export class PartnerRegistrationComponent implements OnInit {
                 'name': this.partnerRegistration.value.companyName,
             };
             this.crudService.postRequest("registerPartner", partnerValue).subscribe((result: any) => {
-                console.log(result);
                 if (result.success) {
                     this.router.navigate(['/auth/partner-login']);
                 } else {
