@@ -9,7 +9,7 @@ interface TreeNode<T> {
 
 interface FSEntry {
     Partner: string;
-    'Node Name': string;
+    'Node Type': string;
     Token: string;
     kind: string;
 }
@@ -23,7 +23,7 @@ interface FSEntry {
 export class PartnerNetworkComponent {
 
     customColumn = 'Partner';
-    defaultColumns = ['Node Name', 'Token'];
+    defaultColumns = ['Node Type', 'Token'];
     allColumns = [this.customColumn, ...this.defaultColumns];
 
     dataSource: NbTreeGridDataSource<FSEntry>;
@@ -35,7 +35,7 @@ export class PartnerNetworkComponent {
         {
             data: {
                 Partner: 'Hilton Honors',
-                'Node Name': '<div class="text-anchor-color">Anchor</div>',
+                'Node Type': '<div class="text-anchor-color">Anchor</div>',
                 Token: 'HLTN',
                 kind: 'dir'
             },
@@ -43,7 +43,7 @@ export class PartnerNetworkComponent {
                 {
                     data: {
                         Partner: 'Hertz Rental',
-                        'Node Name': '<div class="text-peer-color">Peer</div>',
+                        'Node Type': '<div class="text-peer-color">Peer</div>',
                         Token: 'HRTZ',
                         kind: 'doc'
                     }
@@ -51,38 +51,54 @@ export class PartnerNetworkComponent {
                 {
                     data: {
                         Partner: 'Delta Air',
-                        'Node Name': '<div class="text-anchor-color">Anchor</div>',
+                        'Node Type': '<div class="text-anchor-color">Anchor</div>',
                         Token: 'DLTA',
                         kind: 'dir',
-                    }
-                },
-                {
-                    data: {
-                        Partner: 'Hilton Honors',
-                        'Node Name': '<div class="text-anchor-color">Anchor</div>',
-                        Token: 'HLTN',
-                        kind: 'dir'
                     },
                     children: [
                         {
                             data: {
-                                Partner: 'Hertz Rental',
-                                'Node Name': '<div class="text-peer-color">Peer</div>',
-                                Token: 'HRTZ',
+                                Partner: 'Alamo',
+                                'Node Type': '<div class="text-peer-color">Peer</div>',
+                                Token: 'ALMO',
                                 kind: 'doc'
                             }
                         },
                         {
                             data: {
-                                Partner: 'Delta Air',
-                                'Node Name': '<div class="text-anchor-color">Anchor</div>',
-                                Token: 'DLTA',
-                                kind: 'dir',
+                                Partner: 'Lyft',
+                                'Node Type': '<div class="text-peer-color">Peer</div>',
+                                Token: 'LYFT',
+                                kind: 'doc'
                             }
                         },
-                    ],
-                }
+                    ]
+                },
             ],
+        },
+        {
+            data: {
+                Partner: 'Air France',
+                'Node Type': '<div class="text-peer-color">Peer</div>',
+                Token: 'ARFR',
+                kind: 'dir'
+            },
+        },
+        {
+            data: {
+                Partner: 'Starbucks',
+                'Node Type': '<div class="text-peer-color">Peer</div>',
+                Token: 'STBS',
+                kind: 'dir'
+            },
+        },
+        {
+            data: {
+                Partner: 'KLM',
+                'Node Type': '<div class="text-peer-color">Peer</div>',
+                Token: 'AKLM',
+                kind: 'dir'
+            },
         }
     ];
 
