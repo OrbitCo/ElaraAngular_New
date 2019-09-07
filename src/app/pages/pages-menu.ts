@@ -7,7 +7,7 @@ export const MENU_ITEMS: NbMenuItem[] = [{
     home: true,
 },
     {
-        title: 'FEATURES',
+        title: 'MAIN MENU',
         group: true,
     },
     {
@@ -52,39 +52,8 @@ export const MENU_ITEMS: NbMenuItem[] = [{
         icon: 'map-outline',
         link: '/pages/partner-members'
     },
-    {
-        title: 'Settings',
-        icon: 'pie-chart-outline',
-        children: [
-            {
-                title: 'Settings',
-                icon: 'pie-chart-outline',
-                link: '/pages/layout/tabs',
-            },
-        ]
-    },
-    {
-        title: '',
-        icon: 'text-outline',
-        children: [
-            {
-                title: '',
-                icon: 'text-outline',
-                link: '/pages/layout/list',
-            },
-        ]
-    },
-    {
-        title: 'Tables & Data',
-        icon: 'grid-outline',
-        children: [
-            {
-                title: 'Tables & Data',
-                icon: 'grid-outline',
-                link: '/pages/forms/inputs',
-            },
-        ]
-    }
+   
+ 
     /*
     {
       title: 'Forms',
