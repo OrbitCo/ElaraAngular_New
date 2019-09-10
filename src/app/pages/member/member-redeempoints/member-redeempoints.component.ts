@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LocalDataSource} from "ng2-smart-table";
+import {authService} from "@pages/service/authService";
 
 @Component({
     selector: 'ngx-member-redeempoints',
@@ -8,29 +9,20 @@ import {LocalDataSource} from "ng2-smart-table";
 })
 export class MemberRedeempointsComponent implements OnInit {
 
+    tableStatus = false;
     source: LocalDataSource = new LocalDataSource();
 
     settings = {
         actions: {add: false, edit: false, delete: false},
         columns: {
-            redemption: {
-                title: 'Redemption',
+            item: {
+                title: 'Item',
                 type: 'string',
                 width: '20%'
             },
-            dates: {
-                title: 'Dates',
+            partner: {
+                title: 'Partner',
                 type: 'date',
-                width: '20%'
-            },
-            category: {
-                title: 'Category',
-                type: 'string',
-                width: '20%'
-            },
-            location: {
-                title: 'Location',
-                type: 'string',
                 width: '20%'
             },
             points: {
@@ -39,7 +31,7 @@ export class MemberRedeempointsComponent implements OnInit {
                 width: '20%',
             }
         },
-        noDataMessage: "No data found"
+        noDataMessage: "Loading data, please wait..."
     };
 
     data = [
@@ -88,11 +80,18 @@ export class MemberRedeempointsComponent implements OnInit {
         }
     ];
 
-    constructor() {
+    constructor(private crudService: authService) {
     }
 
     ngOnInit() {
-        this.source.load(this.data);
+        this.crudService.postRequest("allRewardsInfo", {cardId: "admin"}).subscribe((response: any) => {
+            if(response.success.length > 0) {
+                this.source.load(response.success);
+            } else {
+                this.settings.noDataMessage = "No data found";
+            }
+            this.tableStatus = true;
+        });
     }
 
 }
