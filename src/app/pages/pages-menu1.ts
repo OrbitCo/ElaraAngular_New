@@ -28,7 +28,7 @@ export const MENU_ITEMS1: NbMenuItem[] = [{
     {
         title: 'Exchange Tokens',
         icon: 'browser-outline',
-        link: '/pages/layout/infinite-list',
+        link: '/pages/member-exchange-tokens',
         
     },
 

@@ -7,8 +7,6 @@ import {DashboardComponent} from '@pages/dashboard/dashboard.component';
 import {ECommerceComponent} from '@pages/e-commerce/e-commerce.component';
 import {NotFoundComponent} from '@pages/miscellaneous/not-found/not-found.component';
 import {PartnerOffersComponent} from "@partner/partner-offers/partner-offers.component";
-import {PartnerExchangeTokensModule} from "@partner/partner-exchange-tokens/partner-exchange-tokens.module";
-import {PartnerMembersModule} from "@partner/partner-members/partner-members.module";
 
 const routes: Routes = [{
     path: '',
@@ -71,6 +69,11 @@ const routes: Routes = [{
             path: 'member-transactions',
             loadChildren: () => import('@member/member-transactions/member-transactions.module')
                 .then(m => m.MemberTransactionsModule),
+        },
+        {
+            path: 'member-exchange-tokens',
+            loadChildren: () => import('@member/member-exchange-tokens/member-exchange-tokens.module')
+                .then(m => m.MemberExchangeTokensModule),
         },
         {
             path: 'layout',
