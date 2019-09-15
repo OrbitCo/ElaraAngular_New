@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {authService} from "@pages/service/authService";
 import {LocalDataSource} from "ng2-smart-table";
-import {DomSanitizer} from "@angular/platform-browser";
 import {MemberEarnpointsButtonComponent} from "@commonComponents/member-earnpoints-button/member-earnpoints-button.component";
 
 @Component({
@@ -39,7 +38,7 @@ export class MemberEarnpointsComponent implements OnInit {
             purchase: {
                 title: 'Buy',
                 type: 'custom',
-                width: '20%',
+                width: '10%',
                 filter: false,
                 sortable: false,
                 renderComponent: MemberEarnpointsButtonComponent,
@@ -57,8 +56,6 @@ export class MemberEarnpointsComponent implements OnInit {
         this.crudService.postRequest("allOffersInfo", {cardId: "admin"}).subscribe((response: any) => {
             if(response.success) {
                 this.source.load(response.success);
-            } else {
-                this.settings.noDataMessage = "No data found";
             }
         });
     }

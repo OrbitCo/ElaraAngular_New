@@ -46,12 +46,6 @@ export class MemberDashboardComponent implements OnInit {
 
     data = [
         {
-            partner: 'Elara',
-            partnerid: '010101',
-            token: 'ELRA',
-            category: 'Universal',
-            points: '129987'
-        }, {
             partner: 'Hilton',
             partnerid: '222222',
             token: 'HLTN',
@@ -85,11 +79,11 @@ export class MemberDashboardComponent implements OnInit {
         this.settings.noDataMessage = "Loading data, please wait...";
         this.memberInfo = JSON.parse(localStorage.getItem('member'));
         this.crudService.postRequest("memberData", this.memberInfo).subscribe((response: any) => {
-            this.data.push({
-                partner: `${response.firstName} ${response.lastName}`,
-                partnerid: '------',
-                token: '------',
-                category: '------',
+            this.data.unshift({
+                partner: 'Elara',
+                partnerid: '010101',
+                token: 'ELRA',
+                category: 'Universal',
                 points: response.points
             });
             this.source.load(this.data);

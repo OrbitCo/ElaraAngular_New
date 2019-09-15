@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LocalDataSource} from "ng2-smart-table";
 import {authService} from "@pages/service/authService";
+import {MemberRedeemColumnComponent} from "@commonComponents/member-redeem-column/member-redeem-column.component";
 
 @Component({
     selector: 'ngx-member-redeempoints',
@@ -32,13 +33,12 @@ export class MemberRedeempointsComponent implements OnInit {
             },
             redeem: {
                 title: 'Redeem',
-                type: 'html',
+                type: 'custom',
                 filter: false,
                 sortable: false,
                 width: '8%',
-                valuePrepareFunction: () => {
-                    return '<span class="test-icon"><i class="ion-archive"></i></span>';
-                },
+                renderComponent: MemberRedeemColumnComponent,
+                valuePrepareFunction: (cell, row) => row
             },
             qrcode: {
                 title: 'QR Code',

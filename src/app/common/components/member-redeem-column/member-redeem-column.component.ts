@@ -1,14 +1,14 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {ViewCell} from 'ng2-smart-table';
+import {Component, Input, OnInit} from '@angular/core';
+import {ViewCell} from "ng2-smart-table";
 import {authService} from "@pages/service/authService";
 import {NbToastrService} from "@nebular/theme";
 
 @Component({
-    selector: 'ngx-member-earnpoints-button',
-    templateUrl: './member-earnpoints-button.component.html',
-    styleUrls: ['./member-earnpoints-button.component.scss']
+    selector: 'ngx-member-redeem-column',
+    templateUrl: './member-redeem-column.component.html',
+    styleUrls: ['./member-redeem-column.component.scss']
 })
-export class MemberEarnpointsButtonComponent implements ViewCell, OnInit {
+export class MemberRedeemColumnComponent implements ViewCell, OnInit {
 
     memberInfo;
     @Input() value;
@@ -28,7 +28,9 @@ export class MemberEarnpointsButtonComponent implements ViewCell, OnInit {
             partnerid: this.value.partner,
             points: this.value.points
         }
-        this.crudService.postRequest("earnPoints", data).subscribe((response: any) => {
+
+        console.log(this.value);
+        this.crudService.postRequest("usePoints", data).subscribe((response: any) => {
             if(response.success) {
                 this.toastrService.show(response.error,'Successful transaction',{status: "success", duration: 5000});
             } else {
