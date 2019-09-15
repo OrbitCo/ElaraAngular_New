@@ -78,11 +78,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
         const partnerInfo = JSON.parse(localStorage.getItem('partner'));
         if(partnerInfo !== null && partnerInfo.partnerid) {
             switch (partnerInfo.partnerid) {
-                case '777777':
+                case '222222':
                     this.brandedName = "HILTON";
                     this.brandedToken = "HLTN";
                     break;
-                case '345':
+                case '333333':
                     this.brandedName = "DELTA";
                     this.brandedToken = "DLTA";
                     break;

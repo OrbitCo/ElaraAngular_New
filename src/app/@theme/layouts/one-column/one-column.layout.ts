@@ -41,10 +41,10 @@ export class OneColumnLayoutComponent implements OnInit{
         this.memberInfo = JSON.parse(localStorage.getItem('member'));
         if(this.memberInfo !== null && this.memberInfo.accountnumber) {
             switch (this.memberInfo.accountnumber) {
-                case '777777':
+                case '222222':
                     this.imageName = "hilton-honors-logo.jpg";
                     break;
-                case '345':
+                case '333333':
                     this.imageName = "delta-logo.png";
                     break;
                 default:
@@ -57,10 +57,10 @@ export class OneColumnLayoutComponent implements OnInit{
         this.partnerInfo = JSON.parse(localStorage.getItem('partner'));
         if(this.partnerInfo !== null && this.partnerInfo.partnerid) {
             switch (this.partnerInfo.partnerid) {
-                case '777777':
+                case '222222':
                     this.imageName = "hilton-honors-logo.jpg";
                     break;
-                case '345':
+                case '333333':
                     this.imageName = "delta-logo.png";
                     break;
                 default:
