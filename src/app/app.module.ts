@@ -68,7 +68,7 @@ import {PartnerRegistrationComponent} from "@partner/partner-registration/partne
         NbCardModule,
         NbAlertModule
     ],
-    bootstrap: [AppComponent],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

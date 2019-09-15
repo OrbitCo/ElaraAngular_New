@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {authService} from "@pages/service/authService";
 import {LocalDataSource} from "ng2-smart-table";
+import {DomSanitizer} from "@angular/platform-browser";
+import {MemberEarnpointsButtonComponent} from "@commonComponents/member-earnpoints-button/member-earnpoints-button.component";
 
 @Component({
     selector: 'ngx-member-earnpoints',
@@ -12,7 +14,7 @@ export class MemberEarnpointsComponent implements OnInit {
     source: LocalDataSource = new LocalDataSource();
 
     settings = {
-        actions: {add: false, edit: false, delete: false,},
+        actions: {add: false, edit: false, delete: false},
         columns: {
             partner: {
                 title: 'Partner',
@@ -33,7 +35,16 @@ export class MemberEarnpointsComponent implements OnInit {
                 title: 'Points',
                 type: 'number',
                 width: '25%'
-            }
+            },
+            purchase: {
+                title: 'Buy',
+                type: 'custom',
+                width: '20%',
+                filter: false,
+                sortable: false,
+                renderComponent: MemberEarnpointsButtonComponent,
+                valuePrepareFunction: (cell, row) => row
+            },
         },
         noDataMessage: "No data found"
     };

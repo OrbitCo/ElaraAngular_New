@@ -18,17 +18,47 @@ export class MemberRedeempointsComponent implements OnInit {
             item: {
                 title: 'Item',
                 type: 'string',
-                width: '20%'
+                width: '46%'
             },
             partner: {
                 title: 'Partner',
                 type: 'date',
-                width: '20%'
+                width: '15%'
             },
             points: {
                 title: 'Points',
                 type: 'number',
-                width: '20%',
+                width: '15%',
+            },
+            redeem: {
+                title: 'Redeem',
+                type: 'html',
+                filter: false,
+                sortable: false,
+                width: '8%',
+                valuePrepareFunction: () => {
+                    return '<span class="test-icon"><i class="ion-archive"></i></span>';
+                },
+            },
+            qrcode: {
+                title: 'QR Code',
+                type: 'html',
+                filter: false,
+                sortable: false,
+                width: '8%',
+                valuePrepareFunction: () => {
+                    return '<span class="test-icon"><i class="ion-archive"></i></span>';
+                },
+            },
+            Info: {
+                title: 'Info',
+                type: 'html',
+                filter: false,
+                sortable: false,
+                width: '8%',
+                valuePrepareFunction: () => {
+                    return '<span class="test-icon"><i class="ion-archive"></i></span>';
+                },
             }
         },
         noDataMessage: "Loading data, please wait..."

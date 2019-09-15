@@ -24,6 +24,9 @@
       ],
       "@theme/*": [
         "./app/@theme/*"
+      ],
+      "@commonComponents/*": [
+        "./app/common/components/*"
       ]
     }
   },

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LocalDataSource} from "ng2-smart-table";
+import {authService} from "@pages/service/authService";
 
 @Component({
     selector: 'ngx-member-dashboard',
@@ -8,6 +9,7 @@ import {LocalDataSource} from "ng2-smart-table";
 })
 export class MemberDashboardComponent implements OnInit {
 
+    memberInfo;
     source: LocalDataSource = new LocalDataSource();
 
     settings = {
@@ -49,25 +51,25 @@ export class MemberDashboardComponent implements OnInit {
             token: 'ELRA',
             category: 'Universal',
             points: '129987'
-        },{
+        }, {
             partner: 'Hilton',
             partnerid: '222222',
             token: 'HLTN',
             category: 'Hotel',
             points: '23700'
-        },{
+        }, {
             partner: 'Delta',
             partnerid: '234567',
             token: 'DLTA',
             category: 'Air Line',
             points: '30000'
-        },{
+        }, {
             partner: 'Hertz',
             partnerid: '980654',
             token: 'HRTZ',
             category: 'Car Rental',
             points: '9800'
-        },{
+        }, {
             partner: 'Greenpeace',
             partnerid: '675432',
             token: 'GRNP',
@@ -76,11 +78,22 @@ export class MemberDashboardComponent implements OnInit {
         }
     ];
 
-    constructor() {
+    constructor(private crudService: authService) {
     }
 
     ngOnInit() {
-        this.source.load(this.data);
+        this.settings.noDataMessage = "Loading data, please wait...";
+        this.memberInfo = JSON.parse(localStorage.getItem('member'));
+        this.crudService.postRequest("memberData", this.memberInfo).subscribe((response: any) => {
+            this.data.push({
+                partner: `${response.firstName} ${response.lastName}`,
+                partnerid: '------',
+                token: '------',
+                category: '------',
+                points: response.points
+            });
+            this.source.load(this.data);
+        });
     }
 
 }
