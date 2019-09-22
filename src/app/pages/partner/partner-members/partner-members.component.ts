@@ -1,16 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, AfterViewInit, OnDestroy, ElementRef} from '@angular/core';
 import {LocalDataSource} from "ng2-smart-table";
 import {authService} from "@pages/service/authService";
+import {NbToastrService} from "@nebular/theme";
 
 @Component({
     selector: 'ngx-partner-members',
     templateUrl: './partner-members.component.html',
     styleUrls: ['./partner-members.component.scss']
 })
-export class PartnerMembersComponent implements OnInit {
+export class PartnerMembersComponent implements OnInit, AfterViewInit, OnDestroy {
+
+    @ViewChild('smartTable', {static: false}) smartTable;
 
     partnerOffer;
     settings = {
+        mode: 'external',
         add: {
             addButtonContent: '<i class="nb-plus"></i>',
             createButtonContent: '<i class="nb-checkmark"></i>',
@@ -76,12 +80,37 @@ export class PartnerMembersComponent implements OnInit {
 
     source: LocalDataSource = new LocalDataSource();
 
-    constructor(private crudService: authService) {
+    constructor(private crudService: authService,
+                private elementRef: ElementRef,
+                public toastrService: NbToastrService,) {
     }
 
     ngOnInit() {
         this.settings.noDataMessage = "Loading data, please wait...";
         this.source.load(this.data);
+    }
+
+    ngAfterViewInit(): void {
+        this.addCustomEventsToTable();
+    }
+
+    ngOnDestroy(): void {
+        this.smartTable.edit.unsubscribe();
+    }
+
+    addCustomEventsToTable():void {
+        this.smartTable.edit.subscribe((dataObject: any) => {
+            dataObject.isInEditing = true;
+        });
+        const element = this.elementRef.nativeElement.querySelector('table');
+        element.addEventListener('click', () => {
+            !this.smartTable.grid.createFormShown ? this.smartTable.tableClass = '' : false;
+        });
+    }
+
+    openCreateDialog(): void {
+        this.smartTable.tableClass = 'hidden-filters';
+        this.smartTable.grid.createFormShown = true;
     }
 
     onEditConfirm(event) {
@@ -100,4 +129,7 @@ export class PartnerMembersComponent implements OnInit {
         }
     }
 
+    onDelete(event) {
+        this.source.remove(event.data);
+    }
 }

@@ -18,3 +18,7 @@
     width: 200px;
     margin-left: 10px;
 }
+
+::ng-deep .hidden-filters .ng2-smart-filter {
+    display: none !important;
+}

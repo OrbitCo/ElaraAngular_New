@@ -1,18 +1,22 @@
-import {Component, OnInit} from '@angular/core';
-import {authService} from "@pages/service/authService";
+import {Component, OnInit, ViewChild, AfterViewInit, OnDestroy, ElementRef} from '@angular/core';
 import {LocalDataSource} from "ng2-smart-table";
+import {authService} from "@pages/service/authService";
+import {NbToastrService} from "@nebular/theme";
 
 @Component({
     selector: 'ngx-partner-rewards',
     templateUrl: './partner-rewards.component.html',
     styleUrls: ['./partner-rewards.component.scss']
 })
-export class PartnerRewardsComponent implements OnInit {
+export class PartnerRewardsComponent implements OnInit, AfterViewInit, OnDestroy {
+
+    @ViewChild('smartTable', {static: false}) smartTable;
 
     partnerRewards;
     source: LocalDataSource = new LocalDataSource();
 
     settings = {
+        mode: 'external',
         actions: {add: true, edit: true, delete: true},
         add: {
             addButtonContent: '<i class="nb-plus"></i>',
@@ -50,7 +54,9 @@ export class PartnerRewardsComponent implements OnInit {
         noDataMessage: "No data found"
     };
 
-    constructor(private crudService: authService) {
+    constructor(private crudService: authService,
+                private elementRef: ElementRef,
+                public toastrService: NbToastrService,) {
     }
 
     ngOnInit() {
@@ -65,6 +71,29 @@ export class PartnerRewardsComponent implements OnInit {
         });
     }
 
+    ngAfterViewInit(): void {
+        this.addCustomEventsToTable();
+    }
+
+    ngOnDestroy(): void {
+        this.smartTable.edit.unsubscribe();
+    }
+
+    addCustomEventsToTable():void {
+        this.smartTable.edit.subscribe((dataObject: any) => {
+            dataObject.isInEditing = true;
+        });
+        const element = this.elementRef.nativeElement.querySelector('table');
+        element.addEventListener('click', () => {
+            !this.smartTable.grid.createFormShown ? this.smartTable.tableClass = '' : false;
+        });
+    }
+
+    openCreateDialog(): void {
+        this.smartTable.tableClass = 'hidden-filters';
+        this.smartTable.grid.createFormShown = true;
+    }
+
     onEditConfirm(event) {
         if (window.confirm('Are you sure you want to save?')) {
             event.confirm.resolve(event.newData);
@@ -73,7 +102,7 @@ export class PartnerRewardsComponent implements OnInit {
         }
     }
 
-    onCreateConfirm(event):void {
+    onCreateConfirm(event): void {
         const inputs = event.newData;
         const data = {
             cardId: inputs.partner,
@@ -81,11 +110,26 @@ export class PartnerRewardsComponent implements OnInit {
             itemName: inputs.item,
             points: inputs.points
         };
+        if (data.partnerId === '' ||
+            data.points === '' ||
+            data.itemName === '') {
+            this.toastrService.show(
+                "Please complete all fields",
+                'Incomplete data',
+                {status: "danger", duration: 5000}
+            );
+            return;
+        }
         this.crudService.postRequest("addReward", data).subscribe((result: any) => {
             if (result.success) {
                 event.confirm.resolve(event.newData);
+                this.toastrService.show("Reward is added succesfully",'Reward added',{status: "success", duration: 5000});
             }
         });
+    }
+
+    onDelete(event) {
+        this.source.remove(event.data);
     }
 
 }

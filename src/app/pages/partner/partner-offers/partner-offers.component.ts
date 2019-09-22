@@ -1,16 +1,20 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, ViewChild, AfterViewInit, OnDestroy, ElementRef} from '@angular/core';
 import {LocalDataSource} from "ng2-smart-table";
 import {authService} from "@pages/service/authService";
+import {NbToastrService} from "@nebular/theme";
 
 @Component({
     selector: 'ngx-partner-offers',
     templateUrl: './partner-offers.component.html',
     styleUrls: ['./partner-offers.component.scss']
 })
-export class PartnerOffersComponent implements OnInit {
+export class PartnerOffersComponent implements OnInit, AfterViewInit, OnDestroy {
+
+    @ViewChild('smartTable', {static: false}) smartTable;
 
     partnerOffer;
     settings = {
+        mode: 'external',
         add: {
             addButtonContent: '<i class="nb-plus"></i>',
             createButtonContent: '<i class="nb-checkmark"></i>',
@@ -50,7 +54,9 @@ export class PartnerOffersComponent implements OnInit {
 
     source: LocalDataSource = new LocalDataSource();
 
-    constructor(private crudService: authService) {
+    constructor(private crudService: authService,
+                private elementRef: ElementRef,
+                public toastrService: NbToastrService,) {
     }
 
     ngOnInit() {
@@ -63,7 +69,30 @@ export class PartnerOffersComponent implements OnInit {
         });
     }
 
-    onEditConfirm(event) {
+    ngAfterViewInit(): void {
+        this.addCustomEventsToTable();
+    }
+
+    ngOnDestroy(): void {
+        this.smartTable.edit.unsubscribe();
+    }
+
+    addCustomEventsToTable():void {
+        this.smartTable.edit.subscribe((dataObject: any) => {
+            dataObject.isInEditing = true;
+        });
+        const element = this.elementRef.nativeElement.querySelector('table');
+        element.addEventListener('click', () => {
+            !this.smartTable.grid.createFormShown ? this.smartTable.tableClass = '' : false;
+        });
+    }
+
+    openCreateDialog(): void {
+        this.smartTable.tableClass = 'hidden-filters';
+        this.smartTable.grid.createFormShown = true;
+    }
+
+    onEditConfirm(event): void {
         if (window.confirm('Are you sure you want to save?')) {
             event.confirm.resolve(event.newData);
         } else {
@@ -71,7 +100,8 @@ export class PartnerOffersComponent implements OnInit {
         }
     }
 
-    onCreateConfirm(event):void {
+    onCreateConfirm(event): void {
+        console.log(event);
         const inputs = event.newData;
         const data = {
             cardId: inputs.partner,
@@ -80,12 +110,28 @@ export class PartnerOffersComponent implements OnInit {
             price: inputs.price,
             productName: inputs.product,
         };
+        if (data.partnerId === '' ||
+            data.points === '' ||
+            data.price === '' ||
+            data.productName === '') {
+            this.toastrService.show(
+                "Please complete all fields",
+                'Incomplete data',
+                {status: "danger", duration: 5000}
+            );
+            return;
+        }
         this.crudService.postRequest("addOffer", data).subscribe((result: any) => {
             if (result.success) {
                 event.confirm.resolve(event.newData);
-            }else {
+                this.toastrService.show("Offer is added succesfully",'Offer added',{status: "success", duration: 5000});
+            } else {
                 this.settings.noDataMessage = "No data found";
             }
         });
+    }
+
+    onDelete(event) {
+        this.source.remove(event.data);
     }
 }

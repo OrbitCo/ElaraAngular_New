@@ -2,8 +2,11 @@
     <nb-card-header>Offers</nb-card-header>
 
     <nb-card-body>
-        <ng2-smart-table [settings]="settings"
+        <ng2-smart-table #smartTable
+                         [settings]="settings"
                          [source]="source"
+                         (delete)="onDelete($event)"
+                         (create)="openCreateDialog()"
                          (createConfirm)="onCreateConfirm($event)"
                          (editConfirm)="onEditConfirm($event)"
                          (deleteConfirm)="onDeleteConfirm($event)">
