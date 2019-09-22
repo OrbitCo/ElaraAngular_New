@@ -125,6 +125,10 @@ export class PartnerRewardsComponent implements OnInit, AfterViewInit, OnDestroy
                 event.confirm.resolve(event.newData);
                 this.toastrService.show("Reward is added succesfully",'Reward added',{status: "success", duration: 5000});
             }
+            if(result.error) {
+                this.toastrService.show(result.error,'Error',{status: "danger", duration: 5000});
+            }
+            this.smartTable.tableClass = '';
         });
     }
 

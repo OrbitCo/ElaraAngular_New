@@ -125,9 +125,11 @@ export class PartnerOffersComponent implements OnInit, AfterViewInit, OnDestroy 
             if (result.success) {
                 event.confirm.resolve(event.newData);
                 this.toastrService.show("Offer is added succesfully",'Offer added',{status: "success", duration: 5000});
-            } else {
-                this.settings.noDataMessage = "No data found";
             }
+            if(result.error) {
+                this.toastrService.show(result.error,'Error',{status: "danger", duration: 5000});
+            }
+            this.smartTable.tableClass = '';
         });
     }
 
