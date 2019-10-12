@@ -32,14 +32,8 @@ export class PartnerOffersComponent implements OnInit, AfterViewInit, OnDestroy 
             confirmDelete: true,
         },
         columns: {
-            partner: {
-                title: 'Partner',
-                type: 'string',
-            },
-            price: {
-                title: 'Price',
-                type: 'string',
-            },
+          
+            
             product: {
                 title: 'Product',
                 type: 'string',
@@ -47,7 +41,17 @@ export class PartnerOffersComponent implements OnInit, AfterViewInit, OnDestroy 
             points: {
                 title: 'Points',
                 type: 'string',
-            }
+            },
+
+            token: {
+                title: 'Token',
+                type: 'string',
+            },
+
+            price: {
+                title: 'Value $',
+                type: 'string',
+            },
         },
         noDataMessage: "No data found"
     };

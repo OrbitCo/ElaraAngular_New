@@ -31,6 +31,11 @@ export class MemberRedeempointsComponent implements OnInit {
                 type: 'number',
                 width: '15%',
             },
+            token: {
+                title: 'Token',
+                type: 'number',
+                width: '5%',
+            },
             redeem: {
                 title: 'Redeem',
                 type: 'custom',

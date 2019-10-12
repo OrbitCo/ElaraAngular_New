@@ -18,22 +18,22 @@ export class MemberEarnpointsComponent implements OnInit {
             partner: {
                 title: 'Partner',
                 type: 'string',
-                width: '25%'
+                width: '20%'
             },
             product: {
                 title: 'Product',
                 type: 'string',
-                width: '25%'
+                width: '60%'
             },
             price: {
                 title: 'Price',
                 type: 'string',
-                width: '25%'
+                width: '5%'
             },
             points: {
                 title: 'Points',
                 type: 'number',
-                width: '25%'
+                width: '5%'
             },
             purchase: {
                 title: 'Buy',

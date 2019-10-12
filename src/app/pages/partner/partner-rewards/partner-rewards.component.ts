@@ -35,21 +35,22 @@ export class PartnerRewardsComponent implements OnInit, AfterViewInit, OnDestroy
             confirmDelete: true,
         },
         columns: {
-            partner: {
-                title: 'Partner',
-                type: 'string',
-                width: '33.3%'
-            },
+           
             item: {
                 title: 'Item',
                 type: 'string',
-                width: '33.3%'
+                width: '60%'
             },
             points: {
                 title: 'Points',
                 type: 'number',
-                width: '33.3%'
-            }
+                width: '20%'
+            },
+            token: {
+                title: 'Token',
+                type: 'string',
+                width: '20%'
+            },
         },
         noDataMessage: "No data found"
     };
